@@ -25,25 +25,29 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" value=<?php echo $_SESSION['nombre'];?>>
+                        <?php
+                            $name = "\"".$_SESSION['nombre']."\"";
+                            $lastname = "\"".$_SESSION['apellido']."\"";
+                        ?>
+                        <input type="text" class="form-control" name="nombre" value=<?php echo $name;?>>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Apellido&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="apellido" value=<?php echo $_SESSION['apellido'];?>>
+                        <input type="text" class="form-control" name="apellido" value=<?php echo $lastname;?>>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="correo" value=<?php echo $_SESSION['email'];?>>
+                        <input type="text" class="form-control" name="correo" value=<?php echo $_SESSION['email'];?>>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Contraseña</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="pass" value=<?php echo $_SESSION['pass'];?>>
+                        <input type="text" class="form-control" name="pass" value=<?php echo $_SESSION['pass'];?>>
                     </div>
                     <input type="submit" class="btn btn-secondary" value="Guardar Cambios" style="width:100%">
                 </form>

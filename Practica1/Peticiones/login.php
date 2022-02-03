@@ -23,6 +23,9 @@
     }
     else
     {
-        echo "No hay Registros";
+        echo '<script>
+            alert("Usuario o contraseña incorrecta D:");
+            window.location.href="http://127.0.0.1/Practica1/index.php";
+            </script>';
     }
 ?>

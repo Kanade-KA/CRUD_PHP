@@ -10,8 +10,10 @@
         $hayusuario=mysqli_query($con, $verificausuario);
         if($hayusuario->num_rows==1)
         {
-            header('Location: http://127.0.0.1/Practica1/Registrar.php');
-            echo "Ya existe este usuario";
+            echo '<script>
+            alert("Error, ya existe un usuario con ese numero de carnet o correo D:");
+            window.location.href="http://127.0.0.1/Practica1/Registrar.php";
+            </script>';
         }
         else
         {
@@ -19,9 +21,9 @@
             header('Location: http://127.0.0.1/Practica1/index.php');
         }
     }else{
-        echo'<script type="text/javascript">
-            alert("Tarea Guardada");
-            window.location.href="http://127.0.0.1/Practica1/registro.php";
+        echo '<script>
+            alert("Error, las contraseñas no coinciden D:");
+            window.location.href="http://127.0.0.1/Practica1/Registrar.php";
             </script>';
     }
 ?>
