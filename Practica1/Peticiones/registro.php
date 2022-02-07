@@ -1,6 +1,5 @@
 <?php 
-    
-    $con=mysqli_connect('localhost', 'root', '', 'practicas') or die("NO SE PUDO CONECTAR D:");
+    include 'Conexion.php';
     $sql= "INSERT INTO Usuario(carnet, nombre, apellido, email, pass)
     VALUES ('".$_POST["carnet"]."','".$_POST["nombre"]."', '".$_POST["apellido"]."', '".$_POST["correo"]."', '".$_POST["pass1"]."');";
     #CON ESTO VERIFICAMOS SI YA ESTÁ USADO ESE USUARIO

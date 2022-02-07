@@ -5,16 +5,18 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body style="background-color:#CACFD2;">
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <img style="float:left;" src="https://seeklogo.com/images/U/universidad-de-san-carlos-de-guatemala-logo-4B7C23A157-seeklogo.com.png" width = "100px">
-        <h1 class="navbar-brand" style="float:left; margin-left:1%;">FACULTAD DE DERECHO <br> CENTRO DE CALCULO</h1>
-        <form class="form-inline">
+    <nav class="navbar navbar-light bg-light justify-content-end">
+    <img src="https://seeklogo.com/images/U/universidad-de-san-carlos-de-guatemala-logo-4B7C23A157-seeklogo.com.png" width = "100px">
+        <h1 class="navbar-brand">FACULTAD DE DERECHO <br> CENTRO DE CALCULO</h1>
+        <form style="padding-left:55%;">
             <a class="btn btn-outline-success my-2 my-sm-0" href="editar.php">Editar Perfil</a>
+            &nbsp;&nbsp;&nbsp;
             <a class="btn btn-outline-danger my-2 my-sm-0" href="Peticiones/desconectar.php">Cerrar Sesión</a>
         </form>
     </nav>
-    <div style="display:flex; justify-content:left;">
+    <div style="display:flex; justify-content:left; margin-left:2%; margin-top:2%;">
         <?php
+            include 'Peticiones/Conexion.php';
             session_start();
             if (is_null($_SESSION['user'])){
                 header('Location: http://127.0.0.1/Practica1/index.php');
@@ -22,22 +24,25 @@
                     if($_SESSION['user'] == "super"){
                         header('Location: http://127.0.0.1/Practica1/index.php');
                     }
-                echo '<p>';
-                echo "Carnet: ". $_SESSION['user'];
-                echo nl2br("\n" .$_SESSION['nombre']);
-                echo '&nbsp;';
-                echo $_SESSION['apellido'];
-                echo nl2br("\n" .$_SESSION['email']);
-                echo '</p>';
+                $sql = "SELECT nombre, apellido, email FROM Usuario WHERE carnet = '".$_SESSION['user']."';";
+                $resultado = mysqli_query($con, $sql);
+                while ($datos = $resultado->fetch_array())
+                    {
+                        echo '<p>';
+                        echo "Carnet: ".$_SESSION['user'];
+                        echo nl2br("\n" .$datos['nombre']);
+                        echo '&nbsp;';
+                        echo $datos['apellido'];
+                        echo nl2br("\n" .$datos['email']);
+                        echo '</p>';
+                    }
             }
         ?>
     </div>
    <div style="display:flex; justify-content:center;">
         <div style="justify-content:center;">
             <h3 style="text-align:center;">PERSONAS</h3>
-
             <?php
-                $con=mysqli_connect('localhost', 'root', '', 'practicas') or die("NO SE PUDO CONECTAR D:");
                 $sql= "SELECT nombre, apellido, email, carnet FROM Usuario;";
                 $resultado = mysqli_query($con, $sql) or die("ERROR NO SE PUDO REALIZAR LA CONSULTA D:");
                 if($resultado->num_rows>0)
@@ -79,7 +84,4 @@
         </div>
    </div>
 </body>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>

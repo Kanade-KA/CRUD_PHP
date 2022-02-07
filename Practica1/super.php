@@ -14,6 +14,7 @@
     </nav>
     <div style="display:flex; justify-content:center;">
         <?php
+            include 'Peticiones/Conexion.php';
             session_start();
             if (is_null($_SESSION['user'])){
                 header('Location: http://127.0.0.1/Practica1/index.php');
@@ -29,7 +30,6 @@
         <div style="justify-content:center; text-align:center;">
             <h3>ESTUDIANTES</h3>
             <?php
-                $con=mysqli_connect('localhost', 'root', '', 'practicas') or die("NO SE PUDO CONECTAR D:");
                 $sql= "SELECT nombre, apellido, email, carnet FROM Usuario;";
                 $resultado = mysqli_query($con, $sql) or die("ERROR NO SE PUDO REALIZAR LA CONSULTA D:");
                 if($resultado->num_rows>0)
